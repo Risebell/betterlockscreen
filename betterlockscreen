@@ -115,7 +115,7 @@ update_images() {
 	compose="convert -size $real_size xc:black"
 	for monitor in $SR; do
 		res=${monitor%%+*}
-		convert -scale $res -resize $res $orig_wall $folder/${res}.png
+		convert -size $res xc:black $orig_wall -gravity Center -geometry $res -composite $folder/${res}.png
 		compose=$compose" $folder/${res}.png -geometry +${monitor#*+} -composite"
 	done
 	compose=$compose" $tiled"
